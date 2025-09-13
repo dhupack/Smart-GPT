@@ -14,20 +14,36 @@ from dotenv import load_dotenv
 import sqlite3
 import requests
 
-# NEW
+## NEW
 from langgraph.checkpoint.memory import MemorySaver  ## these 2 lines are for render
 checkpointer = MemorySaver()
+##
 
 load_dotenv()
 
 
-# 1. LLM (Gemini)
+# # 1. LLM (Gemini)
+
+# llm = ChatGoogleGenerativeAI(
+#     model="gemini-1.5-flash",
+#     temperature=0.2,
+#     streaming=True,  
+# )
+## new render
+import os
+from langchain_google_genai import ChatGoogleGenerativeAI
+
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+if not GOOGLE_API_KEY:
+    raise RuntimeError("Missing GOOGLE_API_KEY env var")
 
 llm = ChatGoogleGenerativeAI(
     model="gemini-1.5-flash",
     temperature=0.2,
-    streaming=True,  
+    streaming=True,
+    google_api_key=GOOGLE_API_KEY,  # ✅ safe: value is injected at runtime
 )
+##
 
 
 # Tools
