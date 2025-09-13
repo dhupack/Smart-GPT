@@ -14,6 +14,10 @@ from dotenv import load_dotenv
 import sqlite3
 import requests
 
+# NEW
+from langgraph.checkpoint.memory import MemorySaver  ## these 2 lines are for render
+checkpointer = MemorySaver()
+
 load_dotenv()
 
 
@@ -84,10 +88,11 @@ def chat_node(state: ChatState):
 
 tool_node = ToolNode(tools)
 
-# 5. Checkpointer
+## OLD
+# # 5. Checkpointer
 
-conn = sqlite3.connect(database="chatbot.db", check_same_thread=False)
-checkpointer = SqliteSaver(conn=conn)
+# conn = sqlite3.connect(database="chatbot.db", check_same_thread=False)
+# checkpointer = SqliteSaver(conn=conn)
 
 # 6. Graph
 

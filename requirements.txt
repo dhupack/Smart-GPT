@@ -15,3 +15,9 @@ python-dotenv>=1.0.1
 
 duckduckgo-search>=5.3.0
 ddgs>=1.7.6
+
+
+## for render
+langgraph>=0.2.0
+langgraph-checkpoint-sqlite>=0.1.0
+aiosqlite>=0.20.0
